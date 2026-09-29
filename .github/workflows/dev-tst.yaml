@@ -1,0 +1,17 @@
+name: TST Pr Coming from Dev
+
+on:
+  pull_request:
+    branches: [ test ]
+
+jobs:
+  check-source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Check source branch
+        run: |
+          if [ "${{ github.event.pull_request.head.ref }}" != "dev" ]; then
+            echo "This PR must come from the 'dev' branch."
+            exit 1
+          fi
