@@ -2,8 +2,10 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import FormHelperText from "@mui/material/FormHelperText";
+import * as React from "react";
 
-export default function SelectForm({label, options, value, name, onChange, onBlur}) {
+export default function SelectForm({label, options, value, name, onChange, onBlur, error, helperText}) {
 
   return (
       <FormControl fullWidth>
@@ -16,6 +18,8 @@ export default function SelectForm({label, options, value, name, onChange, onBlu
           name={name}
           onChange={onChange}
           onBlur={onBlur}
+          error={error}
+          helperText={helperText}
         >
             {
                 options.map((option) => (
@@ -23,6 +27,7 @@ export default function SelectForm({label, options, value, name, onChange, onBlu
                 ))
             }
         </Select>
+          <FormHelperText error>{helperText}</FormHelperText>
       </FormControl>
   );
 }
